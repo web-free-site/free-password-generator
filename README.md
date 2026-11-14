@@ -1,5 +1,23 @@
-<div align="center">
-  <h2>PSWD</h2>
-  <p>Simple secure password generator.</p>
-  <a href="https://pswd.mvze.net/">Visit <strong>PSWD</strong></a> | <a href="https://buymeacoffee.com/remvze">Buy Me a Coffee</a>
-</div>
+# Free Password Generator
+
+Browser-only password, PIN, and Diceware passphrase generator for [free-password-generator.web-free.site](https://free-password-generator.web-free.site).
+
+- **Base:** [remvze/pswd](https://github.com/remvze/pswd) (MIT)
+- **Stack:** Astro (static), React, TypeScript, zxcvbn
+- **Locale:** English (`/`) and French (`/fr/`)
+
+## Develop
+
+```bash
+npm install --ignore-scripts
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+Output is static files in `dist/`. Cloudflare Workers config: `wrangler.toml` (deploy handled outside this repo).

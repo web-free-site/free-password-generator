@@ -1,0 +1,24 @@
+---
+import PageChrome from '@/components/page-chrome.astro';
+import { Container } from '@/components/container';
+import { SITE } from '@/lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<Container>
+  <article class="prose-page">
+    <h1>{heading}</h1>
+    <slot />
+    <p>
+      <a href={SITE.hubUrl}>web-free.site</a> · <a href="/">{SITE.name}</a>
+    </p>
+  </article>
+</Container>

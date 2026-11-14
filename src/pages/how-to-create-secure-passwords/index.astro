@@ -1,0 +1,42 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import FaqSection from '@/components/faq-section.astro';
+import { LONG_TAIL_PAGES } from '@/lib/seo';
+
+const seo = LONG_TAIL_PAGES.find(p => p.path === '/how-to-create-secure-passwords/')!;
+---
+
+<Layout title={seo.title} description={seo.description} path={seo.path} faq={seo.faq}>
+  <PageChrome>
+    <article class="prose-page">
+      <h1>{seo.h1}</h1>
+      <h2>1. Prefer length and randomness</h2>
+      <p>
+        Longer passwords resist guessing and brute force. Aim for at least 14 characters for important
+        accounts, or six or more random words for a passphrase.
+      </p>
+      <h2>2. Use unique passwords everywhere</h2>
+      <p>
+        Reusing one password means a breach on any site can unlock others. Generate a fresh secret for
+        each login and store them in a password manager.
+      </p>
+      <h2>3. Mix character types when required</h2>
+      <p>
+        Some sites demand uppercase, lowercase, numbers, or symbols. Use the Password tab presets or tune
+        checkboxes — our generator enforces your rules while staying random.
+      </p>
+      <h2>4. Check strength, not complexity theater</h2>
+      <p>
+        zxcvbn estimates crack time using patterns, not just symbol counts. A long passphrase can beat a
+        short “complex” password.
+      </p>
+      <h2>5. Generate in the browser</h2>
+      <p>
+        <a href="/">Open the generator</a> — secrets are created on your device, not on a remote API. Copy
+        once and clear the field if you are on a shared computer.
+      </p>
+    </article>
+    <FaqSection faq={seo.faq} />
+  </PageChrome>
+</Layout>

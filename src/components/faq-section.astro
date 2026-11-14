@@ -1,0 +1,29 @@
+---
+import { Container } from '@/components/container';
+import type { Locale } from '@/i18n/messages';
+import { t } from '@/i18n/messages';
+
+interface Props {
+  locale?: Locale;
+  faq: { q: string; a: string }[];
+}
+
+const locale = Astro.props.locale ?? 'en';
+const { faq } = Astro.props;
+---
+
+<Container>
+  <section class="faq-block">
+    <h2>{t(locale, 'faqTitle')}</h2>
+    <dl>
+      {
+        faq.map(item => (
+          <div>
+            <dt>{item.q}</dt>
+            <dd>{item.a}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</Container>

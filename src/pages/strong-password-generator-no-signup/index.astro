@@ -1,0 +1,28 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import { App } from '@/components/app';
+import FaqSection from '@/components/faq-section.astro';
+import { LONG_TAIL_PAGES } from '@/lib/seo';
+
+const seo = LONG_TAIL_PAGES.find(p => p.path === '/strong-password-generator-no-signup/')!;
+---
+
+<Layout title={seo.title} description={seo.description} path={seo.path} faq={seo.faq}>
+  <PageChrome showToolAds>
+    <section class="prose-page">
+      <h1>{seo.h1}</h1>
+      <p>
+        Need a strong random password without creating an account? This page uses the same client-side
+        engine as our home generator: Web Crypto randomness, optional symbols, length presets, and zxcvbn
+        feedback — all before anything touches the network.
+      </p>
+      <p>
+        Click generate, copy the string, and paste it into your password manager. For memorable logins,
+        switch to the Passphrase tab (Diceware-style word lists).
+      </p>
+    </section>
+    <App client:load />
+    <FaqSection faq={seo.faq} />
+  </PageChrome>
+</Layout>

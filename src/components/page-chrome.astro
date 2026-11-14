@@ -1,0 +1,110 @@
+---
+import { AdSlot, SponsoredSmartlink } from '@/components/ads/AdSlot';
+import { Container } from '@/components/container';
+import { SITE } from '@/lib/site';
+import type { Locale } from '@/i18n/messages';
+import { t } from '@/i18n/messages';
+
+interface Props {
+  locale?: Locale;
+  showHomeTop?: boolean;
+  showToolAds?: boolean;
+}
+
+const locale = Astro.props.locale ?? 'en';
+const showHomeTop = Astro.props.showHomeTop ?? false;
+const showToolAds = Astro.props.showToolAds ?? false;
+
+const prefix = locale === 'fr' ? '/fr' : '';
+const homeHref = locale === 'fr' ? '/fr/' : '/';
+---
+
+<div class="site">
+  <div class="site-header-ads">
+    <AdSlot client:load slot="header728x90" className="ad-header" label="Sponsored" />
+  </div>
+
+  <nav class="site-nav" aria-label="Main">
+    <a class:list={[{ active: Astro.url.pathname === homeHref }]} href={homeHref}>{t(locale, 'siteName')}</a>
+    <a href="/how-to-create-secure-passwords/">{t(locale, 'howTo')}</a>
+    <a href="/strong-password-generator-no-signup/">{t(locale, 'strongPw')}</a>
+    <a href="/about/">{t(locale, 'about')}</a>
+    <div class="lang-switch" aria-label={t(locale, 'language')}>
+      <a class:list={[{ active: locale === 'en' }]} href="/">EN</a>
+      <a class:list={[{ active: locale === 'fr' }]} href="/fr/">FR</a>
+    </div>
+  </nav>
+
+  {showHomeTop ? (
+    <div class="site-header-ads">
+      <AdSlot client:load slot="homeTop728x90" className="ad-home-top" label="Sponsored" />
+    </div>
+  ) : null}
+
+  <div class="site-body">
+    <div class="site-main">
+      <slot />
+      {showToolAds ? (
+        <>
+          <AdSlot client:load slot="betweenToolContent728x90" className="ad-between" label="Sponsored" />
+          <AdSlot client:load slot="nativeBelowResult" className="ad-native" label="Sponsored" />
+          <AdSlot client:load slot="content468x60" className="ad-content" label="Sponsored" />
+          <AdSlot client:load slot="content300x250" className="ad-content" label="Sponsored" />
+        </>
+      ) : (
+        <AdSlot client:load slot="content300x250" className="ad-content" label="Sponsored" />
+      )}
+    </div>
+    <aside class="site-sidebar" aria-label="Sidebar">
+      <AdSlot client:load slot="sidebar160x600" className="ad-sidebar" label="Sponsored" />
+      <AdSlot client:load slot="sidebar160x300" className="ad-sidebar" label="Sponsored" />
+    </aside>
+  </div>
+
+  <AdSlot client:load slot="mobileSticky320x50" className="ad-mobile-sticky" label="Sponsored" />
+
+  <Container>
+    <footer class="footer">
+      <p>{t(locale, 'allLocal')}</p>
+      <p>
+        <a href={SITE.hubUrl} rel="noopener noreferrer">{t(locale, 'byHub')}</a>
+      </p>
+      <p>
+        {t(locale, 'upstream')} —
+        <a href="https://github.com/remvze/pswd" rel="noopener noreferrer" target="_blank">GitHub</a>
+      </p>
+      <p>
+        <a href="/privacy/">{t(locale, 'privacy')}</a>
+        ·
+        <a href="/terms/">{t(locale, 'terms')}</a>
+        ·
+        <a href="/about/">{t(locale, 'about')}</a>
+        ·
+        <a href="/contact/">{t(locale, 'contact')}</a>
+      </p>
+      <SponsoredSmartlink client:load />
+    </footer>
+  </Container>
+</div>
+
+<style>
+  .footer {
+    padding-bottom: 56px;
+
+    & p {
+      font-size: var(--font-sm);
+      color: var(--color-foreground-subtle);
+      text-align: center;
+
+      &:not(:last-of-type) {
+        margin-bottom: 8px;
+      }
+
+      & a {
+        font-weight: 500;
+        color: var(--color-foreground);
+        text-decoration: none;
+      }
+    }
+  }
+</style>

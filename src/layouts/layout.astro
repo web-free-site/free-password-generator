@@ -1,24 +1,47 @@
 ---
 import '@/styles/global.css';
+import { SITE } from '@/lib/site';
+import { canonicalUrl, jsonLdFaq, jsonLdWebApp, type Locale } from '@/lib/seo';
 
 interface Props {
   description?: string;
   og?: string;
   title?: string;
+  path?: string;
+  locale?: Locale;
+  faq?: { q: string; a: string }[];
+  noHreflangFr?: boolean;
 }
 
-const title = Astro.props.title
-  ? `${Astro.props.title} — PSWD`
-  : 'PSWD: Simple Secure Password Generator';
+const locale = Astro.props.locale ?? 'en';
+const path = Astro.props.path ?? Astro.url.pathname;
+const canonical = canonicalUrl(path);
+
+const title =
+  Astro.props.title ??
+  (locale === 'fr'
+    ? 'Générateur de mot de passe gratuit — fort, PIN & passphrase'
+    : 'Free Password Generator — strong passwords, PINs & passphrases');
 
 const description =
-  Astro.props.description || 'A simple and secure password generator.';
+  Astro.props.description ??
+  (locale === 'fr'
+    ? 'Créez des mots de passe robustes dans votre navigateur, sans inscription.'
+    : 'Generate strong passwords, PINs, and passphrases in your browser. No sign-up.');
 
 const og = Astro.props.og || '/og.png';
+const ogImage = `${SITE.canonicalHost}${og}`;
+
+const faq = Astro.props.faq ?? [];
+const structured = [jsonLdWebApp(locale), ...(faq.length ? [jsonLdFaq(faq)] : [])];
+
+const enAlt = canonicalUrl('/');
+const frAlt = canonicalUrl('/fr/');
+const noHreflangFr = Astro.props.noHreflangFr ?? false;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width" name="viewport" />
@@ -29,15 +52,29 @@ const og = Astro.props.og || '/og.png';
     <title>{title}</title>
     <meta content={title} name="title" />
     <meta content={description} name="description" />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="alternate" hreflang="en" href={noHreflangFr && locale !== 'en' ? canonical : enAlt} />
+    {noHreflangFr ? null : <link rel="alternate" hreflang="fr" href={frAlt} />}
+    <link rel="alternate" hreflang="x-default" href={enAlt} />
 
     <meta content={title} property="og:title" />
     <meta content={description} property="og:description" />
-    <meta content="PSWD" property="og:site_name" />
-    <meta content="https://pswd.mvze.net/" property="og:url" />
+    <meta content={SITE.name} property="og:site_name" />
+    <meta content={canonical} property="og:url" />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_US'} />
     <meta content="website" property="og:type" />
-    <meta content={`https://pswd.mvze.net${og}`} property="og:image" />
+    <meta content={ogImage} property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content={title} name="twitter:title" />
+    <meta content={description} name="twitter:description" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(structured)} />
 
     <link href="/sitemap-index.xml" rel="sitemap" />
+
+    <script data-cfasync="false" is:inline src="https://abscloud.org/1/2cd208816ce066503bb6b69b74929725"></script>
+    <script data-cfasync="false" is:inline src="https://bauval.org/14/b31e06a76342389716531d6edf6b538a"></script>
   </head>
   <body>
     <slot />

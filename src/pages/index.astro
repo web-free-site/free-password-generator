@@ -3,12 +3,24 @@ import Layout from '@/layouts/layout.astro';
 import { App } from '@/components/app';
 import Hero from '@/components/hero.astro';
 import Description from '@/components/description.astro';
-import Footer from '@/components/footer.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import FaqSection from '@/components/faq-section.astro';
+import { HOME_SEO } from '@/lib/seo';
+
+const seo = HOME_SEO.en;
 ---
 
-<Layout>
-  <Hero />
-  <App client:load />
-  <Description />
-  <Footer />
+<Layout
+  title={seo.title}
+  description={seo.description}
+  path="/"
+  locale="en"
+  faq={seo.faq}
+>
+  <PageChrome locale="en" showHomeTop showToolAds>
+    <Hero locale="en" />
+    <App client:load locale="en" />
+    <Description locale="en" />
+    <FaqSection locale="en" faq={seo.faq} />
+  </PageChrome>
 </Layout>

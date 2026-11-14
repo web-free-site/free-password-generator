@@ -1,0 +1,29 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import LegalPage from '@/components/legal-page.astro';
+import { SITE } from '@/lib/site';
+---
+
+<Layout
+  title="Contact — Free Password Generator"
+  description="Contact Free Password Generator via the web-free.site hub."
+  path="/contact/"
+>
+  <PageChrome>
+    <LegalPage title="Contact" description="" path="/contact/" heading="Contact">
+      <p>
+        This tool is maintained as part of the <a href={SITE.hubUrl}>web-free.site</a> collection of free
+        browser utilities.
+      </p>
+      <p>
+        For privacy questions, see the <a href="/privacy/">privacy policy</a>. For upstream PSWD bugs or
+        feature ideas, open an issue on{' '}
+        <a href="https://github.com/remvze/pswd">github.com/remvze/pswd</a>.
+      </p>
+      <p>
+        Email (hub): <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+      </p>
+    </LegalPage>
+  </PageChrome>
+</Layout>

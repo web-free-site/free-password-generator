@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import LegalPage from '@/components/legal-page.astro';
+import { SITE } from '@/lib/site';
+---
+
+<Layout
+  title="About — Free Password Generator"
+  description="About Free Password Generator — MIT-based PSWD fork, browser-only, no sign-up."
+  path="/about/"
+  faq={[
+    {
+      q: 'Who built the original generator?',
+      a: 'Maze (remvze) created PSWD, an open-source password generator distributed under the MIT License.',
+    },
+  ]}
+>
+  <PageChrome>
+    <LegalPage title="About" description="" path="/about/" heading="About">
+      <p>
+        <strong>{SITE.name}</strong> is a rebranded deployment of the excellent open-source project{' '}
+        <a href="https://github.com/remvze/pswd">PSWD</a> by <a href="https://x.com/remvze">Maze (remvze)</a
+        >, used under the <a href="https://github.com/remvze/pswd/blob/main/LICENSE">MIT License</a>.
+      </p>
+      <h2>What we added</h2>
+      <p>
+        English and French landing pages, SEO content, privacy/legal pages, and hosting configuration for{' '}
+        <a href={SITE.canonicalHost}>{SITE.canonicalHost}</a>. Generation logic, entropy sources, and UI
+        patterns remain from the upstream project.
+      </p>
+      <h2>How it works</h2>
+      <p>
+        Passwords, PINs, and Diceware passphrases are created with Web Crypto and supporting libraries in
+        your browser. Strength hints use zxcvbn. Nothing is uploaded to our servers.
+      </p>
+      <h2>Hub</h2>
+      <p>
+        Part of the free tools collection at <a href={SITE.hubUrl}>web-free.site</a>.
+      </p>
+    </LegalPage>
+  </PageChrome>
+</Layout>

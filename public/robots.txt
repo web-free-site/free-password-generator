@@ -1,4 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
 
-Sitemap: https://pswd.mvze.net/sitemap-index.xml
+Sitemap: https://free-password-generator.web-free.site/sitemap-index.xml

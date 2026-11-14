@@ -1,4 +1,5 @@
 import { Container } from '@/components/container';
+import type { Locale } from '@/i18n/messages';
 import { useCopy } from '@/hooks/use-copy';
 import { useGeneratorSettings } from '@/hooks/use-generator-settings';
 import { usePasswordGenerator } from '@/hooks/use-password-generator';
@@ -11,7 +12,11 @@ import { PasswordResult } from './password-result';
 import { PinTabPanel } from './pin-tab-panel';
 import styles from './app.module.css';
 
-export function App() {
+type AppProps = {
+  locale?: Locale;
+};
+
+export function App({ locale = 'en' }: AppProps) {
   const { copy, copying } = useCopy();
   const settings = useGeneratorSettings();
 
@@ -34,6 +39,7 @@ export function App() {
       <div className={styles.generator}>
         <GeneratorTabs
           activeTab={settings.activeTab}
+          locale={locale}
           onChange={settings.setActiveTab}
         />
 
@@ -108,11 +114,6 @@ export function App() {
           />
         )}
       </div>
-
-      <p className={styles.donate}>
-        Support me with a <a href="https://buymeacoffee.com/remvze">donation</a>
-        .
-      </p>
     </Container>
   );
 }

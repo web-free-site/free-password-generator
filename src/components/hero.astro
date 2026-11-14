@@ -1,6 +1,15 @@
 ---
 import { CipherText } from './cipher-text';
 import { Container } from './container';
+import type { Locale } from '@/i18n/messages';
+import { t } from '@/i18n/messages';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = Astro.props.locale ?? 'en';
+const brand = locale === 'fr' ? 'FPG' : 'FPG';
 ---
 
 <section class="hero">
@@ -9,17 +18,16 @@ import { Container } from './container';
       <div class="moon-mask"></div>
     </div>
     <div class="title">
-      <div class="logo"><img alt="PSWD Logo" src="/logo.svg" /></div>
+      <div class="logo"><img alt="Free Password Generator" src="/logo.svg" /></div>
       <h1>
-        <span class="first">Password Generation</span>
-        <span class="second">Should Be Simple</span>
-        <span class="third">And Secure.</span>
+        <span class="first">{t(locale, 'heroLine1')}</span>
+        <span class="second">{t(locale, 'heroLine2')}</span>
+        <span class="third">{t(locale, 'heroLine3')}</span>
       </h1>
     </div>
     <p>
-      That&apos;s why we built <span
-        ><CipherText client:load text="PSWD!" /></span
-      >
+      {`${t(locale, 'heroSub')} `}
+      <span><CipherText client:load text={brand} /></span>
     </p>
   </Container>
 </section>
@@ -101,17 +109,12 @@ import { Container } from './container';
       font-size: var(--font-lg);
       font-weight: 700;
       line-height: 1.1;
+      text-transform: capitalize;
 
       & .first,
       & .second,
       & .third {
         display: block;
-
-        & .underline {
-          text-decoration: underline;
-          text-decoration-style: dotted;
-          text-decoration-color: var(--color-foreground);
-        }
       }
 
       & .second {
@@ -121,17 +124,6 @@ import { Container } from './container';
       & .third {
         color: var(--color-foreground-subtler);
       }
-
-      & .gradient {
-        background: linear-gradient(
-          135deg,
-          var(--color-foreground),
-          var(--color-foreground),
-          var(--color-neutral-500)
-        );
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
     }
 
     & p {
@@ -139,11 +131,6 @@ import { Container } from './container';
       margin-top: 16px;
       font-size: var(--font-sm);
       color: var(--color-foreground-subtler);
-
-      & strong {
-        font-weight: 500;
-        color: var(--color-foreground-subtle);
-      }
 
       & span {
         font-family: var(--font-mono);

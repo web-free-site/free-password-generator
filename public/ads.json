@@ -1,0 +1,57 @@
+{
+  "enabled": true,
+  "bannerScriptBase": "https://bauval.org/22",
+  "popunder": "https://abscloud.org/1/2cd208816ce066503bb6b69b74929725",
+  "socialBar": "https://bauval.org/14/b31e06a76342389716531d6edf6b538a",
+  "nativeBanner": {
+    "src": "https://bauval.org/21/f0a710c870d30fb82eba5cb657a46697",
+    "containerId": "container-f0a710c870d30fb82eba5cb657a46697"
+  },
+  "smartlink": {
+    "url": "https://araplhn.org/4/9eeff670f27914d9852e7ebaa5b596ce",
+    "label": "Sponsored"
+  },
+  "banners": {
+    "banner728x90": {
+      "key": "5cc5ae5b47f8e0d86f476de2a182437d",
+      "width": 728,
+      "height": 90
+    },
+    "banner468x60": {
+      "key": "aa4b8d9df23984ea188826f9605547d8",
+      "width": 468,
+      "height": 60
+    },
+    "banner320x50": {
+      "key": "d8fa2c1ed9665b71f16eb12b62fdf8b5",
+      "width": 320,
+      "height": 50
+    },
+    "banner300x250": {
+      "key": "202e65f493261ac1bba89e3d68056dbc",
+      "width": 300,
+      "height": 250
+    },
+    "banner160x600": {
+      "key": "dd8401224d65a1f518e07ad0fb4dca01",
+      "width": 160,
+      "height": 600
+    },
+    "banner160x300": {
+      "key": "4e7dc0089060727736089732259e43ee",
+      "width": 160,
+      "height": 300
+    }
+  },
+  "slots": {
+    "header728x90": "banner728x90",
+    "homeTop728x90": "banner728x90",
+    "betweenToolContent728x90": "banner728x90",
+    "sidebar160x600": "banner160x600",
+    "sidebar160x300": "banner160x300",
+    "mobileSticky320x50": "banner320x50",
+    "nativeBelowResult": "nativeBanner",
+    "content468x60": "banner468x60",
+    "content300x250": "banner300x250"
+  }
+}
