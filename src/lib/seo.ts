@@ -103,6 +103,22 @@ export const LONG_TAIL_PAGES: PageSeo[] = [
       },
     ],
   },
+  {
+    path: "/how-to-create-a-strong-passphrase/",
+    locale: 'en',
+    title: "How to create a strong passphrase",
+    description: "Build a long, random word-based passphrase in your browser with Free Password Generator, and store it in a password manager rather than reusing it.",
+    h1: "How to create a strong passphrase",
+    faq: [{"q": "Use several random words, not a famous quote?", "a": "A line from a book or a song is easier to guess than words drawn at random. Use the passphrase option in Free Password Generator rather than inventing a phrase from memory."}, {"q": "Prefer more words over clever substitutions?", "a": "Adding one more random word usually helps more than replacing letters with similar digits in a short phrase."}],
+  },
+  {
+    path: "/how-to-generate-a-wifi-password/",
+    locale: 'en',
+    title: "How to generate a Wi-Fi password or PIN",
+    description: "Create a long random Wi-Fi password or a numeric PIN in your browser with Free Password Generator, then store it safely and update the router.",
+    h1: "How to generate a Wi-Fi password",
+    faq: [{"q": "Generate a long random password?", "a": "Open Free Password Generator and create a high-length password. If the router rejects some symbols, turn those character types off and generate again."}, {"q": "Copy it into a password manager first?", "a": "Save the new password before you change the router, so you do not lock yourself out."}],
+  },
 ];
 
 export function canonicalUrl(path: string): string {

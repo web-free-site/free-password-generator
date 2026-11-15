@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import FaqSection from '@/components/faq-section.astro';
+import { LONG_TAIL_PAGES } from '@/lib/seo';
+
+const seo = LONG_TAIL_PAGES.find(p => p.path === '/how-to-create-a-strong-passphrase/')!;
+---
+
+<Layout title={seo.title} description={seo.description} path={seo.path} faq={seo.faq}>
+  <PageChrome>
+    <article class="prose-page">
+      <h1>{seo.h1}</h1>
+      <p>A passphrase is a password made of several words. Length makes it hard to guess, and words can be easier to type than a short string of symbols. Free Password Generator can create a Diceware-style passphrase on your device so the secret is not sent to a server.</p>
+      <h2>1. Use several random words, not a famous quote</h2>
+      <p>A line from a book or a song is easier to guess than words drawn at random. Use the passphrase option in Free Password Generator rather than inventing a phrase from memory.</p>
+      <h2>2. Prefer more words over clever substitutions</h2>
+      <p>Adding one more random word usually helps more than replacing letters with similar digits in a short phrase.</p>
+      <h2>3. Generate it in the browser and copy once</h2>
+      <p>Create the passphrase, copy it into a password manager, and clear the field if you are on a shared computer.</p>
+      <h2>4. Use a unique passphrase for each important account</h2>
+      <p>If one site is breached, the others should not open with the same phrase.</p>
+      <h2>Managers still help</h2>
+      <p>You do not have to memorize every passphrase. A password manager can store them and can generate random character passwords when a site rejects spaces or long phrases.</p>
+      <h2>Site rules</h2>
+      <p>Some forms cap length or forbid spaces. If a site will not accept a passphrase, generate a long random password instead and store that.</p>
+      <p>Generate a passphrase with <a href="/">Free Password Generator</a>. Secrets are created on your device.</p>
+    </article>
+    <FaqSection faq={seo.faq} />
+  </PageChrome>
+</Layout>

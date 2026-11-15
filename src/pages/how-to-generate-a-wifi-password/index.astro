@@ -1,0 +1,31 @@
+---
+import Layout from '@/layouts/layout.astro';
+import PageChrome from '@/components/page-chrome.astro';
+import FaqSection from '@/components/faq-section.astro';
+import { LONG_TAIL_PAGES } from '@/lib/seo';
+
+const seo = LONG_TAIL_PAGES.find(p => p.path === '/how-to-generate-a-wifi-password/')!;
+---
+
+<Layout title={seo.title} description={seo.description} path={seo.path} faq={seo.faq}>
+  <PageChrome>
+    <article class="prose-page">
+      <h1>{seo.h1}</h1>
+      <p>A default router password printed on a sticker is often shared too widely or is too short. Generating a new, random password and saving it in a manager is a better habit. Free Password Generator can create a long password or a numeric PIN locally.</p>
+      <h2>1. Generate a long random password</h2>
+      <p>Open Free Password Generator and create a high-length password. If the router rejects some symbols, turn those character types off and generate again.</p>
+      <h2>2. Copy it into a password manager first</h2>
+      <p>Save the new password before you change the router, so you do not lock yourself out.</p>
+      <h2>3. Update the router or access point</h2>
+      <p>Sign in to the router's administration page on a network you already control and set the new wireless password. Use a secure connection and follow the vendor's instructions.</p>
+      <h2>4. Update every device you own</h2>
+      <p>Reconnect phones, computers, printers, and other devices. Share the password only with people who should use the network.</p>
+      <h2>Guest networks</h2>
+      <p>If your router supports a guest network, give visitors that password instead of the main one.</p>
+      <h2>PINs are different from Wi-Fi keys</h2>
+      <p>A short numeric PIN may be required for a device or a door code, but it is a weak choice for a wireless network. Use a long password for Wi-Fi whenever the router allows it.</p>
+      <p>Create the secret with <a href="/">Free Password Generator</a>. The site does not receive the password.</p>
+    </article>
+    <FaqSection faq={seo.faq} />
+  </PageChrome>
+</Layout>
